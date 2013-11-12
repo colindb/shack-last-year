@@ -1,0 +1,5 @@
+shack_username: username
+shack_password: password
+num_days: 6
+num_lols: 10
+post_sleep_seconds: 150
