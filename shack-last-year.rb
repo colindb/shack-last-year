@@ -56,11 +56,10 @@ def root_post_content(start_date, end_date, num_lols)
 
   today = Date.today
   day_ord = ordinalize(today.day)  
-  today_str = today.strftime("%A, %B #{day_ord}, %Y")
   start_str = start_date.strftime('%B %-d, %Y')
   end_str = end_date.strftime('%B %-d, %Y')
-  content = "*[y{Today is %s.}y]*\n\nGot a case of the Mondays?  Feeling nostalgic?  Cheer up with the top %s y{LOLed}y posts from b{%s}b to b{%s}b!\n" %
-    [today_str, num_lols, start_str, end_str]
+  content = "*[y{Hey it's the beginning of another week!}y]* Got a case of the Mondays? Cheer up with *[b{last year's}b]* *[y{LOLs}y]*.\n\nComing up: the top %s y{LOLed}y posts from b{%s}b to b{%s}b.\n" %
+    [num_lols, start_str, end_str]
   return content
 end
 
@@ -231,7 +230,13 @@ def convert_lols_to_posts(all_lols, num_lols)
   return lol_posts
 end
 
-config = YAML.load_file('config.yaml')
+if ARGV.length != 1
+  print "Missing config path."
+  exit
+end
+
+config_path = ARGV[0]
+config = YAML.load_file(config_path)
 username = config['shack_username']
 password = config['shack_password']
 num_days = config['num_days']
